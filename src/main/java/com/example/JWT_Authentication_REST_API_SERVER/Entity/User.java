@@ -46,4 +46,13 @@ public class User extends BaseTimeEntity {
         this.phone = phone;
         this.email = email;
     }
+
+    // User.java에 추가
+    public void update(String password, Integer age, String phone, String email) {
+        // null이 아닌 값만 선택적으로 업데이트
+        if (password != null) this.password = password;
+        if (age != null) this.age = age;
+        if (phone != null) this.phone = phone;
+        if (email != null) this.email = email;
+    }
 }
