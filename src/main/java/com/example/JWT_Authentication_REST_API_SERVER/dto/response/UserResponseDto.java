@@ -28,6 +28,7 @@ public class UserResponseDto {
                 .id(user.getId())
                 .username(user.getUsername())
                 .age(user.getAge())
+                .name(user.getName())
                 .phone(user.getPhone())
                 .email(user.getEmail())
                 .role(user.getRole().name())
