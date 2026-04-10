@@ -1,4 +1,4 @@
-package com.example.JWT_Authentication_REST_API_SERVER.User;
+package com.example.JWT_Authentication_REST_API_SERVER.Entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 @Table(name = "users")
-public class User {
+public class User extends BaseTimeEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
