@@ -33,9 +33,8 @@ public class SignUpRequestDto {
     @Size(min = 2, message = "이름은 2자 이상이어야 합니다.")
     private String name;
 
-    @NotBlank(message = "나이는 필수입니다.")
     @Min(value = 0, message = "나이는 0 이상이어야 합니다.")
-    @Min(value = 150, message = "나이는 150 이하이어야 합니다.")
+    @Max(value = 150, message = "나이는 150 이하이어야 합니다.")
     private Integer age;
 
     @NotBlank(message = "전화번호는 필수입니다.")
