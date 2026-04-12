@@ -1,8 +1,11 @@
 spring:
+  config:
+    import: optional:file:.env
+
   datasource:
-    url: jdbc:mysql://localhost:3306/jwt_project_db?serverTimezone=Asia/Seoul
-    username: root
-    password: admin
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/jwt_project_db?serverTimezone=Asia/Seoul}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:admin}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
@@ -14,6 +17,15 @@ spring:
         format_sql: true
 
 jwt:
-  secret: "8ccdd3307904cf145989e44b2ad1ef79a8f8571e4033803866c55ead52363865" # 무작위 32자: 이후 환경변수로 추출
-  access-token-expiration: 1800000    # 30분 (ms)
-  refresh-token-expiration: 604800000 # 7일 (ms)
+  secret: ${JWT_SECRET}
+  access-token-expiration: ${JWT_ACCESS_TOKEN_EXPIRATION:1800000}
+  refresh-token-expiration: ${JWT_REFRESH_TOKEN_EXPIRATION:604800000}
+
+app:
+  data-initializer:
+    admin:
+      username: ${ADMIN_USERNAME}
+      password: ${ADMIN_PASSWORD}
+      name: ${ADMIN_NAME}
+      phone: ${ADMIN_PHONE}
+      email: ${ADMIN_EMAIL}

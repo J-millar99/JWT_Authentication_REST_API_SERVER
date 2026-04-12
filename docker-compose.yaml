@@ -12,3 +12,28 @@ services:
       - ./mysql/mysql_data:/var/lib/mysql
       - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${MYSQL_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 40s
+
+  app:
+    build: .
+    container_name: spring-jwt-api
+
+    depends_on:
+      db:
+        condition: service_healthy
+
+    env_file: .env
+
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/jwt_project_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+
+    ports:
+      - "8080:8080"
