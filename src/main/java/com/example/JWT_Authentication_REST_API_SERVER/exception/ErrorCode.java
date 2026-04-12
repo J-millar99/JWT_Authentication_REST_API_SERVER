@@ -21,6 +21,9 @@ public enum ErrorCode {
     DUPLICATE_PHONE(HttpStatus.CONFLICT, "이미 사용 중인 전화번호입니다."),
     INVALID_PASSWORD(HttpStatus.UNAUTHORIZED, "비밀번호가 올바르지 않습니다."),
 
+    // 관리자 관련
+    CANNOT_DELETE_ADMIN(HttpStatus.FORBIDDEN, "관리자 계정은 삭제할 수 없습니다."),
+
     // 공통
     INVALID_INPUT(HttpStatus.BAD_REQUEST, "입력값이 올바르지 않습니다.");
 
