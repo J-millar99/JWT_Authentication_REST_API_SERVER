@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/auth_db?serverTimezone=Asia/Seoul
+    url: jdbc:mysql://localhost:3306/jwt_project_db?serverTimezone=Asia/Seoul
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,3 +12,8 @@ spring:
     properties:
       hibernate:
         format_sql: true
+
+jwt:
+  secret: "8ccdd3307904cf145989e44b2ad1ef79a8f8571e4033803866c55ead52363865" # 무작위 32자: 이후 환경변수로 추출
+  access-token-expiration: 1800000    # 30분 (ms)
+  refresh-token-expiration: 604800000 # 7일 (ms)
