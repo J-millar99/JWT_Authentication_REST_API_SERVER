@@ -155,6 +155,11 @@ public class UserService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new CustomException(ErrorCode.USER_NOT_FOUND));
 
+        if (user.getRole() == Role.ADMIN) {
+            log.warn("관리자 계정 삭제 시도 거부.");
+            throw new CustomException(ErrorCode.CANNOT_DELETE_ADMIN);
+        }
+
         userRepository.delete(user);
         log.info("회원탈퇴 성공 - username: {}", username);
     }
