@@ -50,7 +50,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ${{ secrets.DOCKERHUB_USERNAME }}/jwt-authentication-rest-api-server
+          images: ${{ secrets.DOCKERHUB_USERNAME }}/jwt-rest-api-server
           tags: |
             type=raw,value=latest,enable=${{ github.ref_name == 'main' }}
             type=ref,event=branch
